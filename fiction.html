@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="fiction_data.json"></script>
+    <title>Fiction</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+
+<style type="text/css">
+  *{
+    box-sizing: border-box;
+  }
+  body{
+    position: relative;
+  }
+  #header{
+    width:100%;
+    text-align: center;
+    font-size: 2em;
+  }
+	.nav{
+		width:100%;
+		display: flex;
+		justify-content: center;
+    align-items: center;
+	}
+	.nav > .button{
+		flex:1;
+		display: block;
+		text-align:center;
+    border:1px solid black;
+    margin:5px;
+
+    cursor: pointer;
+	}
+  .top_btn{
+    position: fixed;
+    bottom:0;
+    right:0;
+    margin: 40px 20px;
+  }
+  .top_btn > a{
+    text-decoration: none;
+    color:white;
+    padding:10px;
+    font-size: 1.2em;
+    display: block;
+    border:1px solid black;
+    background-color: black;
+    border-radius: 5px;
+  }
+  .chapter_name{
+    font-size:1.2em;
+    font-weight: bold;
+    text-align: center;
+  }
+</style>
+
+<body>
+  <section id="content">
+    <div id="header">Ray的小說網</div>
+
+    <div class="top_btn">
+      <!-- <a id="top_btn" href="#header">Top</a> -->
+      <a id="top_btn" @click="clearLocalStorage">Clear</a>
+    </div>
+    <div class="nav">
+      <a class="button" id="prev_btn" @click="clickPrev">上一頁</a>
+      <a class="button" id="home_btn" @click="clickMenu">目錄</a>
+      <a class="button" id="next_btn" @click="clickNext" >下一頁</a>
+    </div>
+
+    <div>
+      <div class="chapter_name">
+        {{name}}
+      </div>
+      <div class="content" v-html="content">
+        <!-- {{content}} -->
+      </div>
+    </div>
+
+
+    <footer>
+      <div class="nav">
+        <a class="button" id="prev_btn" @click="clickPrev">上一頁</a>
+        <a class="button" id="home_btn" @click="clickMenu">目錄</a>
+        <a class="button" id="next_btn" @click="clickNext" >下一頁</a>
+      </div>
+    </footer>
+
+  </section>
+</body>
+
+<script type="text/javascript" src="script.js"></script>
+
+</html>
