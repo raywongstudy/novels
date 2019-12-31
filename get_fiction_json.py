@@ -19,7 +19,7 @@ def getTxt(driver):
 	text_ = text_.get_attribute('innerHTML')
 	text_ = text_.replace("如果您觉得本书还不错，请粘贴以下网址分享给你的(QQ、微信或微博好友)，支持作者！<br>https://m.mingrenteahouse.com/shu/33112.html<button class=\"btn\" data-clipboard-text=\"https://m.mingrenteahouse.com/shu/33112.html#这本小说超级好看\">复制</button>","")
 	text_ = text_.replace("<a href=\"javascript:posterror();\" style=\"text-align:center;color:red;\">『如果章节错误，点此举报』</a><br>第(1/2)页<br><br>","")
-	text_ = text_.replace("<br>(本章未完,请翻页)第(2/2)页<br>","")
+	text_ = text_.replace("<br><br>(本章未完,请翻页)第(2/2)页<br>","")
 	return text_
 
 def clickNext(driver):
@@ -34,14 +34,14 @@ if __name__ == '__main__':
 
 	driver = webdriver.Chrome(chrome_options=chrome_options)
 
-	driver.get('https://m.mingrenteahouse.com/chapter.html?1#mybookid=33112&bookid=58637&chapterid=25307841')
+	driver.get('https://m.mingrenteahouse.com/chapter.html?1#mybookid=33112&bookid=58637&chapterid=25307469')
 
 	driver.implicitly_wait(10)
 
 	data_lists = []
 	data_list = ''
 	try:
-		for i in range(100):
+		for i in range(400):
 			print('try:',i)#show current times
 
 			#get fiction content

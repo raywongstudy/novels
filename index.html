@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="novel_icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="fiction_data.json"></script>
-    <title>Fiction</title>
+    <title>Novels</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
@@ -15,6 +16,7 @@
     box-sizing: border-box;
   }
   body{
+    font-size:19px;
     position: relative;
   }
   #header{
@@ -44,6 +46,7 @@
     margin: 40px 20px;
   }
   .top_btn > a{
+    opacity: .5;
     text-decoration: none;
     color:white;
     padding:10px;
@@ -53,10 +56,29 @@
     background-color: black;
     border-radius: 5px;
   }
+  .top_btn > a:hover,.top_btn > a:active{
+    opacity: 1;
+  }
   .chapter_name{
     font-size:1.2em;
     font-weight: bold;
     text-align: center;
+  }
+  .menu_lists{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+  }
+  .menu_lists > a{
+    display: block;
+    text-align: center;
+    min-width:130px;
+    width:25%;
+    max-width:200px;
+    margin:5px;
+    padding:5px;
+    border:1px solid black;
   }
 </style>
 
@@ -65,20 +87,26 @@
     <div id="header">Ray的小說網</div>
 
     <div class="top_btn">
-      <!-- <a id="top_btn" href="#header">Top</a> -->
-      <a id="top_btn" @click="clearLocalStorage">Clear</a>
+      <a id="top_btn" href="#header">Top</a>
+      <!-- <a id="top_btn" @click="clearLocalStorage">Clear</a> -->
     </div>
     <div class="nav">
       <a class="button" id="prev_btn" @click="clickPrev">上一頁</a>
       <a class="button" id="home_btn" @click="clickMenu">目錄</a>
       <a class="button" id="next_btn" @click="clickNext" >下一頁</a>
     </div>
-
-    <div>
-      <div class="chapter_name">
-        {{name}}
+    <!-- for menu -->
+    <div id="menu" v-if="menu_show">
+      <div class="menu_lists">
+        <a v-for="chapter in data" @click="linkToChapter(chapter.chapter)">{{chapter.name}}</a>
       </div>
-      <div class="content" v-html="content">
+    </div>
+    <!-- for main novels data -->
+    <div v-for="novel in novels" v-show="novels_show">
+      <div class="chapter_name">
+        {{novel.name}}
+      </div>
+      <div class="content" v-html="novel.content">
         <!-- {{content}} -->
       </div>
     </div>
